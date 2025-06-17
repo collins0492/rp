@@ -1,0 +1,232 @@
+---
+import Button from "@rp/ui/src/Button.astro";
+import Card from "@rp/ui/src/Card.astro";
+import CardContent from "@rp/ui/src/CardContent.astro";
+import CardFooter from "@rp/ui/src/CardFooter.astro";
+import Surface from "@rp/ui/src/Surface.astro";
+import IconTextGroup from "@rp/ui/src/IconTextGroup.astro";
+import RatingPill from "@rp/ui/src/RatingPill.astro";
+import ProgressBar from "@rp/ui/src/ProgressBar.astro";
+import Review from "@rp/ui/src/Review.astro";
+import Stack from "@rp/ui/src/Stack.astro";
+import TextField from "@rp/ui/src/TextField.astro";
+import Typography from "@rp/ui/src/Typography.astro";
+import Layout from "../layouts/Layout.astro";
+import cardBackground from "../assets/card-background.jpeg";
+import balrogBackground from "../assets/balrog-background.jpg";
+import sarumanBackground from "../assets/saruman-background.jpg";
+---
+
+<Layout>
+  <div class="p-8 flex flex-col gap-8 bg-gray-50 min-h-screen">
+    <h1 class="text-3xl font-bold mb-4">Component Showcase</h1>
+    <section class="flex flex-col gap-8">
+      <Typography variant="h2" class="text-2xl font-semibold mb-4" underline
+        >Buttons</Typography
+      >
+      <div>
+        <Button text="Primary" variant="contained" color="primary" />
+        <Button text="Secondary" variant="contained" color="secondary" />
+        <Button text="Outlined" variant="outlined" color="primary" />
+        <Button text="Text" variant="text" color="primary" />
+        <Button text="Link" variant="link" color="secondary" />
+        <Button text="Disabled" disabled={true} />
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-8">
+      <Typography variant="h2" class="text-2xl font-semibold" underline
+        >Cards</Typography
+      >
+      <div class="flex flex-wrap gap-8">
+        <Card rounded shadow>
+          <CardContent backgroundImage={cardBackground.src}>
+            <div class="flex flex-row justify-end">
+              <RatingPill
+                rating={4.7}
+                numberOfRatings={538}
+                class="bg-slate-100 m-2"
+              />
+            </div>
+          </CardContent>
+          <CardFooter>Witch-king of Angmar</CardFooter>
+        </Card>
+        <Card rounded shadow>
+          <CardContent class="bg-yellow-50">
+            <img
+              src={balrogBackground.src}
+              alt="Balrog"
+              class="w-full h-48 object-cover rounded-lg"
+            />
+          </CardContent>
+          <CardFooter>The Balrog, Durin's Bane</CardFooter>
+        </Card>
+        <Card rounded shadow>
+          <CardContent class="bg-yellow-50">
+            <img
+              src={sarumanBackground.src}
+              alt="Saruman"
+              class="w-full h-48 object-cover rounded-lg"
+            />
+          </CardContent>
+          <CardFooter>Saruman of Many Colors</CardFooter>
+        </Card>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-8">
+      <Typography variant="h2" class="text-2xl font-semibold" underline
+        >Surfaces</Typography
+      >
+      <div class="flex flex-col gap-8">
+        <Surface rounded shadow class="p-6">
+          <Typography variant="h5">Surface with shadow & rounded</Typography>
+          <Typography variant="body1"
+            >The Balrog reached the bridge. Gandalf stood in the middle of the
+            span, leaning on the staff in his left hand, but in his other hand
+            Glamdring gleamed, cold and white. His enemy halted again, facing
+            him, and the shadow about it reached out like two vast wings. It
+            raised the whip, and the thongs whined and cracked. Fire came from
+            its nostrils. But Gandalf stood firm.</Typography
+          >
+          <Typography variant="body1">
+            'You cannot pass,' he said. The orcs stood still, and a dead silence
+            fell. 'I am a servant of the Secret Fire, wielder of the flame of
+            Anor. You cannot pass. The dark fire will not avail you, flame of
+            Udûn. Go back to the Shadow! You cannot pass.'
+          </Typography>
+          <Typography variant="body1">
+            The Balrog made no answer. The fire in it seemed to die, but the
+            darkness grew. It stepped forward slowly onto the bridge, and
+            suddenly it drew itself up to a great height, and its wings were
+            spread from wall to wall; but still Gandalf could be seen,
+            glimmering in the gloom; he seemed small, and altogether alone: grey
+            and bent, like a wizened tree before the onset of a storm.
+          </Typography>
+        </Surface>
+        <Surface class="p-6">
+          <Typography variant="h5">Surface default</Typography>
+          <Typography variant="body1"
+            >With a terrible cry the Balrog fell forward, and its shadow plunged
+            down and vanished. But even as it fell it swung its whip, and the
+            thongs lashed and curled about the wizard's knees, dragging him to
+            the brink. He staggered and fell, grasped vainly at the stone, and
+            slid into the abyss. 'Fly, you fools!' he cried, and was gone.</Typography
+          >
+        </Surface>
+      </div>
+
+      <section class="flex flex-col gap-8">
+        <Typography variant="h2" class="text-2xl font-semibold" underline
+          >Icon Text Groups</Typography
+        >
+        <div class="flex flex-wrap gap-8">
+          <IconTextGroup
+            icon="heart"
+            title="Frodo"
+            text="I wish the Ring had never come to me. I wish none of this had happened"
+          />
+          <IconTextGroup
+            icon="star"
+            title="Gandalf"
+            text="Grey and bent, like a wizened tree before the onset of a storm"
+          />
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-8">
+        <Typography variant="h2" class="text-2xl font-semibold" underline
+          >Rating Pills</Typography
+        >
+        <div class="flex flex-wrap gap-8">
+          <RatingPill
+            rating={4.5}
+            numberOfRatings={1084}
+            class="bg-white border"
+          />
+          <RatingPill rating={2.3} class="bg-white border" />
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-8 w-1/2">
+        <Typography variant="h2" class="text-2xl font-semibold" underline
+          >Progress Bars</Typography
+        >
+        <div class="flex flex-col gap-4">
+          <ProgressBar progress={75} label="Score" rating={true} />
+          <ProgressBar progress={40} label="Partial" rating={false} />
+          <ProgressBar progress={100} />
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-8 w-1/2">
+        <Typography variant="h2" class="text-2xl font-semibold" underline
+          >Reviews</Typography
+        >
+        <div class="flex flex-col gap-4">
+          <Surface class="p-4 rounded-lg">
+            <Review
+              rating={4.5}
+              username="Gandalf the Grey"
+              avatar="https://i.pinimg.com/474x/40/bb/99/40bb9947e6bbecbc4fb59810ec76a580.jpg"
+              datetime="Yesterday"
+              review="This game was fantastic!"
+            />
+          </Surface>
+          <Surface class="p-4 rounded-lg">
+            <Review
+              rating={2.0}
+              username="Bilbo Baggins"
+              avatar="https://randomuser.me/api/portraits/men/32.jpg"
+              datetime="2 weeks ago"
+              review="Frodo: I wish the Ring had never come to me. I wish none of this had happened. Gandalf: So do all who live to see such times, but that is not for them to decide. All we have to decide is what to do with the time that is given to us."
+            />
+          </Surface>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-8">
+        <Typography variant="h2" class="text-2xl font-semibold" underline
+          >Stack</Typography
+        >
+        <div class="flex flex-wrap gap-8">
+          <Stack>
+            <Button text="Stacked 1" />
+            <Button text="Stacked 2" />
+            <Button text="Stacked 3" />
+          </Stack>
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-8 w-1/2">
+        <Typography variant="h2" class="text-2xl font-semibold" underline
+          >Text Fields</Typography
+        >
+        <div class="flex flex-col gap-4">
+          <TextField
+            label="Email"
+            name="email"
+            required
+            error="Invalid email"
+          />
+          <TextField label="Name" name="name" placeholder="Frodo Baggins" />
+          <TextField label="Password" name="password" type="password" />
+          <TextField label="Disabled" name="disabled" disabled />
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-8">
+        <Typography variant="h2" class="text-2xl font-semibold" underline
+          >Typography</Typography
+        >
+        <div class="flex flex-col gap-2">
+          <Typography variant="h1">Heading 1</Typography>
+          <Typography variant="h2">Heading 2</Typography>
+          <Typography variant="subtitle1">Subtitle 1</Typography>
+          <Typography variant="body1">Body 1</Typography>
+          <Typography variant="overline">Overline</Typography>
+        </div>
+      </section>
+    </section>
+  </div>
+</Layout>

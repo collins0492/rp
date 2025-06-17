@@ -1,0 +1,36 @@
+---
+import clsx from "clsx";
+import Typography from "./Typography.astro";
+import RatingPill from "./RatingPill.astro";
+
+const {
+  rating,
+  username,
+  avatar,
+  datetime,
+  review,
+  class: className = "",
+} = Astro.props;
+
+const containerClasses = clsx("flex flex-col gap-6", className);
+---
+
+<div class={containerClasses}>
+  <div class="flex flex-row justify-between items-start">
+    <div class="flex flex-row items-center gap-3">
+      <img src={avatar} alt={username} class="w-10 h-10 rounded-full" />
+      <div class="flex flex-col">
+        <Typography variant="h2" class="text-md text-primary">
+          {username}
+        </Typography>
+        <Typography variant="body2" class="text-sm text-slate-500">
+          {datetime}
+        </Typography>
+      </div>
+    </div>
+    <RatingPill rating={rating} class="bg-white" />
+  </div>
+  <Typography variant="body1" class="text-md text-slate-600">
+    {review}
+  </Typography>
+</div>

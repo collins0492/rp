@@ -1,0 +1,14 @@
+---
+import Surface from "./Surface.astro";
+import clsx from "clsx";
+
+const { rounded = false, shadow = false, class: className = "" } = Astro.props;
+
+const styles = `break-words w-[155px] min-h-[240px] flex flex-col justify-between gap-1 text-sm p-1 hover:-translate-y-1 transform transition duration-300 ease-in-out`;
+
+const cardClasses = clsx(styles, className);
+---
+
+<Surface class={cardClasses} rounded={rounded} shadow={shadow}>
+  <slot />
+</Surface>

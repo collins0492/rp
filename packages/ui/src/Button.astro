@@ -1,0 +1,81 @@
+---
+import clsx from "clsx";
+import type { ButtonProps } from "./Button.types";
+
+const {
+  text,
+  disabled = false,
+  variant = "contained",
+  color = "primary",
+  size = "regular",
+  rounded = "md",
+  class: className = "",
+}: ButtonProps = Astro.props;
+
+const variantClasses = {
+  contained: {
+    primary: `bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800`,
+    secondary: `bg-secondary-600 text-white hover:bg-secondary-700 active:bg-secondary-800`,
+  },
+  outlined: {
+    primary: `border-2 border-primary hover:border-primary-600 active:border-primary-700 text-primary-700`,
+    secondary: `border-secondary-600 text-secondary-600 hover:bg-secondary-600 hover:text-white active:bg-secondary-700`,
+  },
+  text: {
+    primary: "hover:underline",
+    secondary: "hover:underline",
+  },
+  link: {
+    primary: "hover:underline",
+    secondary: "hover:underline",
+  },
+};
+
+const disabledClasses = {
+  contained: {
+    primary: `bg-primary-200 text-primary-700`,
+    secondary: `bg-secondary-200 text-secondary-700`,
+  },
+  outlined: {
+    primary: `border-2 border-primary-700 text-primary-700`,
+    secondary: `border-2 border-secondary-700 text-secondary-700`,
+  },
+  text: {
+    primary: "text-gray-500",
+    secondary: "text-gray-500",
+  },
+  link: {
+    primary: "text-gray-500",
+    secondary: "text-gray-500",
+  },
+};
+
+const sizeClasses = {
+  large: "text-lg px-6 py-4",
+  regular: "text-base px-4 py-3",
+  small: "text-sm px-4 py-2",
+};
+
+const roundedClasses = {
+  none: "",
+  sm: "rounded-sm",
+  md: "rounded-md",
+  lg: "rounded-lg",
+  full: "rounded-full",
+};
+
+const buttonClasses = clsx(
+  `no-underline`,
+  roundedClasses[rounded],
+  sizeClasses[size],
+  disabled
+    ? disabledClasses[variant][color]
+    : variantClasses[variant][color] + ` hover:cursor-pointer`,
+  className
+);
+---
+
+<button class={buttonClasses} disabled={disabled}>
+  {text}
+  <slot />
+</button>

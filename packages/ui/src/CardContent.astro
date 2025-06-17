@@ -1,0 +1,9 @@
+---
+import clsx from "clsx";
+
+const { class: className = "", backgroundImage = "" } = Astro.props;
+---
+
+<div class={clsx("bg-white bg-cover grow rounded-md", className)} style={`background-image: url(${backgroundImage});`}>
+  <slot />
+</div>

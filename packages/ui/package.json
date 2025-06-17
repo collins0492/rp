@@ -1,0 +1,8 @@
+{
+  "name": "@rp/ui",
+  "version": "1.0.0",
+  "dependencies": {
+    "@rp/icons": "workspace:^",
+    "clsx": "^2.1.1"
+  }
+}

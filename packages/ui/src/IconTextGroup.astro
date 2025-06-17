@@ -1,0 +1,39 @@
+---
+import clsx from "clsx";
+import Surface from "./Surface.astro";
+import Typography from "./Typography.astro";
+import HeartIcon from "@rp/icons/outline/HeartIcon.astro";
+import StarIcon from "@rp/icons/outline/StarIcon.astro";
+import BlobImage from "./assets/blob.svg";
+
+const { icon, title, text, class: className = "" } = Astro.props;
+
+const styles = clsx(
+  "flex flex-row gap-8 md:flex-col md:text-center items-start max-w-[320px] group",
+  className
+);
+
+const Icon = icon === "heart" ? HeartIcon : StarIcon;
+---
+
+<div class={styles}>
+  <div class="relative p-3 md:m-auto">
+    <BlobImage
+      class="absolute top-0 left-0 w-full size-29 transition duration-300 group-hover:-rotate-12"
+    />
+    <Surface
+      rounded
+      class="px-4 py-6 -rotate-12 transition duration-300 group-hover:rotate-0 shadow-lg"
+    >
+      <div class="bg-blue-500 p-3 rounded-full">
+        <Icon class="text-white" />
+      </div>
+    </Surface>
+  </div>
+  <div class="flex flex-col gap-2">
+    <Typography variant="h2" class="text-primary">
+      {title}
+    </Typography>
+    <Typography variant="body1">{text}</Typography>
+  </div>
+</div>

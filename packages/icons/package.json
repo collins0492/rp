@@ -1,0 +1,12 @@
+{
+  "name": "@rp/icons",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.1",
+  "dependencies": {
+    "clsx": "^2.1.1"
+  }
+}

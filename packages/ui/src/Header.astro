@@ -1,0 +1,132 @@
+---
+import BarsIcon from "@rp/icons/solid/BarsIcon.astro";
+import CrossIcon from "@rp/icons/solid/CrossIcon.astro";
+
+const { user, profile, avatar, navLinks = [] } = Astro.props;
+---
+
+<nav class="w-full flex justify-center border-b border-b-foreground/10 h-16">
+  <div
+    class="w-full flex-row-reverse md:flex-row max-w-4xl flex justify-between items-center p-3 text-sm text-foreground"
+  >
+    <a href="/" class="hover:underline"> Rotten Potatoes </a>
+    <div></div>
+    <button
+      id="mobileNavToggle"
+      class="md:hidden w-6 h-6 z-50 bg-transparent border-none p-0"
+      aria-label="Toggle navigation"
+      type="button"
+    >
+      <BarsIcon id="barsIcon" class="w-6 h-6" />
+      <CrossIcon id="crossIcon" class="w-6 h-6 hidden" />
+    </button>
+
+    <div class="hidden md:flex justify-center items-center space-x-5">
+      {
+        navLinks.map((link) => (
+          <a class="hover:underline" href={link.href}>
+            {link.name}
+          </a>
+        ))
+      }
+      {
+        user ? (
+          <div class="flex items-center gap-4">
+            <a href="/account">
+              <img
+                class="inline-block h-12 w-12 rounded-full ring-2 ring-white"
+                src={
+                  profile?.avatar_url
+                    ? avatar.publicUrl
+                    : "https://i.pinimg.com/474x/40/bb/99/40bb9947e6bbecbc4fb59810ec76a580.jpg"
+                }
+                alt={user.email}
+              />
+            </a>
+          </div>
+        ) : (
+          <>
+            <a
+              href="/login"
+              class="py-2 px-4 rounded-md no-underline bg-btn-background dark:text-black dark:bg-white"
+            >
+              Login
+            </a>
+            <a
+              href="/login"
+              class="py-2 px-4 rounded-md no-underline text-white bg-black dark:text-black dark:bg-white"
+            >
+              Register
+            </a>
+          </>
+        )
+      }
+    </div>
+
+    <div
+      id="mobileNav"
+      class="md:hidden absolute flex top-0 left-0 right-0 bottom-0 flex-col items-left p-5 pt-14 space-y-5 z-40 bg-white dark:bg-black hidden"
+    >
+      {
+        navLinks.map((link) => (
+          <a class="hover:underline" href={link.href}>
+            {link.name}
+          </a>
+        ))
+      }
+      {
+        user ? (
+          <div class="flex items-center gap-4">
+            <a href="/account">
+              <img
+                class="inline-block h-12 w-12 rounded-full ring-2 ring-white"
+                src={
+                  profile?.avatar_url
+                    ? avatar.publicUrl
+                    : "https://i.pinimg.com/474x/40/bb/99/40bb9947e6bbecbc4fb59810ec76a580.jpg"
+                }
+                alt={user.email}
+              />
+            </a>
+          </div>
+        ) : (
+          <>
+            <a
+              href="/login"
+              class="py-2 px-4 rounded-md no-underline text-white bg-black dark:text-black dark:bg-white"
+            >
+              Login
+            </a>
+            <a
+              href="/login"
+              class="py-2 px-4 rounded-md no-underline text-white bg-black dark:text-black dark:bg-white"
+            >
+              Register
+            </a>
+          </>
+        )
+      }
+    </div>
+  </div>
+  <script>
+    const toggle = document.getElementById("mobileNavToggle");
+    const mobileNav = document.getElementById("mobileNav");
+    const barsIcon = document.getElementById("barsIcon");
+    const crossIcon = document.getElementById("crossIcon");
+    if (toggle && mobileNav && barsIcon && crossIcon) {
+      toggle.addEventListener("click", () => {
+        mobileNav.classList.toggle("hidden");
+        barsIcon.classList.toggle("hidden");
+        crossIcon.classList.toggle("hidden");
+      });
+      // Optionally, close nav on link click
+      mobileNav.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileNav.classList.add("hidden");
+          barsIcon.classList.remove("hidden");
+          crossIcon.classList.add("hidden");
+        });
+      });
+    }
+  </script>
+</nav>

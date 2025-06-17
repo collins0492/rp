@@ -1,0 +1,39 @@
+---
+import { percentageToScaleOutOfTen } from "../../utils/percentageToScaleOutOfTen";
+import RatingPill from "./RatingPill.astro";
+import clsx from "clsx";
+
+const { progress, label, rating = true, class: className = "" } = Astro.props;
+
+let safeProgress = progress;
+if (safeProgress < 0) safeProgress = 0;
+if (safeProgress > 100) safeProgress = 100;
+
+const containerClasses = clsx(
+  "w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700",
+  className
+);
+
+const labelRowClasses = clsx(
+  "flex flex-row mb-2",
+  label ? "justify-between" : "justify-end"
+);
+---
+
+{
+  (label || rating) && (
+    <div class={labelRowClasses}>
+      {label && <div class="text-md font-medium dark:text-white">{label}</div>}
+      {rating && (
+        <RatingPill rating={percentageToScaleOutOfTen(safeProgress)} />
+      )}
+    </div>
+  )
+}
+<div class={containerClasses}>
+  <div
+    class="bg-green-300 h-2.5 rounded-full dark:bg-blue-500"
+    style={`width: ${safeProgress}%`}
+  >
+  </div>
+</div>

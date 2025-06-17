@@ -1,0 +1,9 @@
+---
+import clsx from "clsx";
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class={clsx(className, "bg-red-100")}>
+  <slot />
+</div>

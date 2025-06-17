@@ -1,0 +1,22 @@
+---
+import Button from "@rp/ui/src/Button.astro";
+import Layout from "../layouts/Layout.astro";
+import IconTextGroup from "@rp/ui/src/IconTextGroup.astro";
+---
+
+<Layout>
+  <h1 class="font-bold">Hello world!</h1>
+  <Button
+    text="Click Me"
+    variant="contained"
+    color="primary"
+    size="regular"
+    rounded="md"
+  />
+  <IconTextGroup
+    icon="heart"
+    title="Heart Icon"
+    text="This is a heart icon example."
+    class="mt-4"
+  />
+</Layout>

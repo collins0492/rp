@@ -1,0 +1,12 @@
+---
+import clsx from "clsx";
+
+const { rounded = false, shadow = false, class: className = "" } = Astro.props;
+
+const styles = clsx("surface", rounded && "rounded-2xl", shadow && "shadow");
+const classes = clsx(styles, className);
+---
+
+<div class={classes}>
+  <slot />
+</div>
